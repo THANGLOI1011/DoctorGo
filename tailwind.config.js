@@ -1,9 +1,7 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
+import plugin from "tailwindcss/plugin";
+
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
   theme: {
     extend: {
       colors: {
@@ -11,5 +9,13 @@ export default {
       },
     },
   },
-  plugins: [],
-}
+  plugins: [
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        ".grid-cols-auto": {
+          "grid-template-columns": "repeat(auto-fill, minmax(200px, 1fr))",
+        },
+      });
+    }),
+  ],
+};
